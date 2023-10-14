@@ -11,7 +11,7 @@ function App() {
     return (
     <>
         <div className='flex flex-col xl:flex-row'>
-            <div className='flex flex-col xl:min-w-[30rem] p-6'>
+            <div className='flex flex-col mx-auto xl:min-w-[30rem] p-6 xl:min-h-screen xl:bg-mino-dark-700'>
                 <h1 className='mx-auto xl:mx-0 text-5xl font-bold text-mino-blue-500 mb-6'>Cardboard</h1>
                 <SearchBar onSearch={handleSearch} />
             </div>

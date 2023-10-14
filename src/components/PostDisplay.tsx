@@ -13,9 +13,8 @@ const PostDisplay = ({ search }: Props) => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const response = await fetch(`https://testbooru.donmai.us/posts.json?&tags=${search}`);
-            const data = await response.json();
-            console.log(data);
+            const response = await fetch(`https://testbooru.donmai.us/posts.json?&tags=-child ${search}`);
+            const data = await response.json();            
             setPosts(data);
         };
 
