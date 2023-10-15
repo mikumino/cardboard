@@ -25,7 +25,7 @@ const PostDisplay = ({ search }: Props) => {
     return (
         <div className='columns-1 lg:columns-3 xl:columns-5 gap-6 mx-6'>
             {posts.map((post: Post) => (
-                <img className='mb-6 rounded-xl' src={post.file_url} alt="funny"/>
+                <img className='mb-6 rounded-xl' src={post.file_url} alt="funny" key={post.file_url}/>
             ))}
         </div>
     );

@@ -20,7 +20,7 @@ const SearchBar = ({ onSearch }: Props) => {
     const [suggestions, setSuggestions] = useState([]);
 
     const handleDelete = (i: number) => {
-        setTags(tags.filter((tag: Tag, index: number) => index !== i));
+        setTags(tags.filter((_tag: Tag, index: number) => index !== i));
     }
 
     const handleAddition = (tag: Tag) => {
