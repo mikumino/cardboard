@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { WithContext as ReactTags } from 'react-tag-input';
-import './SearchBar.css';
 
 interface Tag {
     id: string;
@@ -45,10 +44,10 @@ const SearchBar = ({ onSearch }: Props) => {
             <ReactTags
                 classNames={{
                     tagInputField: 'input input-bordered w-full',
-                    activeSuggestion: 'bg-mino-blue-600',
+                    activeSuggestion: 'bg-mino-blue-700',
                     selected: 'mt-6',
                     tag: 'inline-block py-1 px-2 border border-mino-blue-300 rounded-lg mr-2 mb-2',
-                    suggestions: 'bg-mino-dark-500 p-2 rounded-lg cursor-pointer',
+                    suggestions: '[&_li_mark]:bg-transparent [&_li_mark]:text-neutral bg-mino-dark-500 p-2 rounded-lg cursor-pointer',
                     remove: 'ml-2',
                 }}
                 tags={tags}
