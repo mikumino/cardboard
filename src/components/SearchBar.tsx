@@ -1,38 +1,66 @@
 import React, { useState } from 'react';
+import { WithContext as ReactTags } from 'react-tag-input';
+import './SearchBar.css';
+
+interface Tag {
+    id: string;
+    text: string;
+}
+
+interface DanbooruTag {
+    id: number;
+    name: string;
+}
 
 interface Props {
     onSearch: (search: string) => void;
 }
 
 const SearchBar = ({ onSearch }: Props) => {
-    const [search, setSearch] = useState('');
+    const [tags, setTags] = useState<Tag[]>([]);
+    const [suggestions, setSuggestions] = useState([]);
 
-    const fetchTags = async (search: string) => {
-        console.log(search);
-        const response = await fetch(`https://testbooru.donmai.us/tags.json?search[name_matches]=${search}*`);
-        const data = await response.json();
-        console.log(data);
+    const handleDelete = (i: number) => {
+        setTags(tags.filter((tag: Tag, index: number) => index !== i));
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-        fetchTags(search);
-    };
+    const handleAddition = (tag: Tag) => {
+        setTags([...tags, tag]);
+    }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        onSearch(search);
-    };
+    const updateSuggestions = async (search: string) => {
+        // Fetch list of tags matching search ordered by count and limited to 20
+        const response = await fetch(`https://testbooru.donmai.us/tags.json?search[name_matches]=*${search}*&search[order]=count&limit=20`);
+        const data = await response.json();
+        // Converts DanbooruTags to Tag
+        setSuggestions(data.map((tag: DanbooruTag) => ({ id: tag.id.toString(), text: tag.name })));
+    }
 
+    const handleChange = (e: string) => {
+        updateSuggestions(e);
+    };
+    
     return (
-        <form onSubmit={handleSubmit}>
-            <input
+        <div>
+            <ReactTags
+                classNames={{
+                    tagInputField: 'input input-bordered w-full',
+                    activeSuggestion: 'bg-mino-blue-600',
+                    selected: 'mt-6',
+                    tag: 'inline-block py-1 px-2 border border-mino-blue-300 rounded-lg mr-2 mb-2',
+                    suggestions: 'bg-mino-dark-500 p-2 rounded-lg cursor-pointer',
+                    remove: 'ml-2',
+                }}
+                tags={tags}
+                suggestions={suggestions}
+                handleDelete={handleDelete}
+                handleAddition={handleAddition}
                 placeholder='Enter tags...'
-                type="text"
-                onChange={handleChange}
-                className='input input-bordered w-full'
+                handleInputChange={handleChange}
+                allowDragDrop={false}
+                inputFieldPosition='top'
             />
-        </form>
+        </div>
     );
 }
 

@@ -1,0 +1,9 @@
+.ReactTags__suggestions li mark {
+    text-decoration: underline;
+    background: none;
+    font-weight: 600;
+  }
+
+.ReactTags__remove {
+    color:black;
+}
