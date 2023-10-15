@@ -13,8 +13,8 @@ const PostDisplay = ({ search }: Props) => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            // const response = await fetch(`https://testbooru.donmai.us/posts.json?&tags=-child ${search}`);
-            const response = await fetch(`https://testbooru.donmai.us/posts.json?&tags=hoshimachi_suisei`);
+            const response = await fetch(`https://testbooru.donmai.us/posts.json?&tags=rating:general ${search}`);
+            // const response = await fetch(`https://testbooru.donmai.us/posts.json?&tags=hoshimachi_suisei`);
             const data = await response.json();            
             setPosts(data);
         };
