@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 
 interface Post {
+    id: number; // i may be dumb but i cant find post url, so i just have this to build the url
     file_url: string;
+    tag_string_general: string;
+    tag_string_artist: string;
+    tag_string_copyright: string;
+    tag_string_character: string;
+    tag_string_meta: string;
+    source: string;
 }
 
 interface Props {
     search: string;
 }
 
-const PostDisplay = ({ search }: Props) => {
+const PostMasonryDisplay = ({ search }: Props) => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -31,4 +38,4 @@ const PostDisplay = ({ search }: Props) => {
     );
 };
 
-export default PostDisplay;    
+export default PostMasonryDisplay;    

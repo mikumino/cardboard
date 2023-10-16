@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import SearchBar from './components/SearchBar'
-import ImageDisplay from './components/PostDisplay'
+import ImageDisplay from './components/PostMasonryDisplay'
 
 function App() {
   const [search, setSearch] = useState('')
