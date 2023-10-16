@@ -9,6 +9,7 @@ interface Tag {
 interface DanbooruTag {
     id: number;
     name: string;
+    post_count: number;
 }
 
 interface Props {
